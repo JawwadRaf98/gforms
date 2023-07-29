@@ -251,7 +251,9 @@ navbar {
   }
 
   .form-group input[type="text"],
-  .form-group input[type="password"] {
+  .form-group input[type="password"],
+  .form-group input[type="email"]
+   {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -272,3 +274,25 @@ navbar {
   .form-group button:hover {
     background-color: #45a049;
   }
+
+  /* alert */
+  .custom-alert{
+    /* border: 1px solid; */
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size:  20px;
+    border-radius: 3px;
+  }
+
+  .custom-alert.danger{
+    border: 1px solid rgb(195 27 27 / 87%);
+    background: rgb(255 72 72 / 87%);
+    color: #fff;
+  }
+  .custom-alert.success{
+    border: 1px solid   #4CAF50;
+    background:  #3ea041ec;
+    color: #fff;
+  }
+
+

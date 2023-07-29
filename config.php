@@ -58,7 +58,7 @@
         $pdo = connectToDatabase();
         try {
             $stmt = $pdo->prepare($query);
-            $stmt->execute($data);
+            $stmt->execute(@$data);
             $affectedRows = $stmt->rowCount();
             if ($affectedRows > 0) {
                 // If the update was successful, return the user ID
