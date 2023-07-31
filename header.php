@@ -1,5 +1,8 @@
 <?php
     include_once('./config.php');
+    include_once('./includes/auth.php');
+    login_auth();
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +23,10 @@
             <div class="nav-links">
                 <ul>
                     <li>
-                        <a href="email_software_mail_new.php">Home</a>
+                        <a href="index.php">Home</a>
+                    </li>
+                    <li>
+                        <a href="add_form?magic=<?php echo rand();?>">Add From</a>
                     </li>
                     <?php
                         if(isset($_SESSION['userLogin'] ) && $_SESSION['userLogin'] == true){
@@ -37,9 +43,7 @@
                         }
                         ?>
                   
-                    <li>
-                        <a href="update_smtp.php?magic=<?php echo rand();?>">Add From</a>
-                    </li>
+                   
                     
                 </ul>
             </div>

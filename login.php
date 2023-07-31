@@ -63,7 +63,7 @@
       <div class="form-group">
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" placeholder="Enter your password" required>
-        <small><a href="trouble.php">Forget password?</a></small>
+        <!-- <small><a href="trouble.php">Forget password?</a></small> -->
       </div>
       <div class="form-group">
         <button type="submit">Login</button>
