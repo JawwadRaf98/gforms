@@ -98,6 +98,7 @@ if (
       <div class="form-group">
         <button type="submit">Signup</button>
       </div>
+      
     </form>
     <p><a href="login.php">Already had an account?</a></p>
 

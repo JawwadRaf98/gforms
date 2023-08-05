@@ -1,9 +1,7 @@
 <?php 
     session_start();
+
     $web_url = "https://imhostings.com/e/v";
-//     ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
    
     define('WEB_URL',$web_url);
     
@@ -12,9 +10,9 @@
         try {
             
             $host = "localhost";
-            $dbname = "imhost5_emailSoftDBms";
-            $username = "imhost5_useremailSoft";
-            $password = "aOblH@eTw(o)";
+            $dbname = "gforms";
+            $username = "root";
+            $password = "";
 
             $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -44,21 +42,11 @@
         }
     } 
     
-    function getRows($query,$arr=null) {
+    function getRows($query) {
         try {
             $pdo = connectToDatabase();
             $stmt = $pdo->prepare($query);
-            if($arr==null){
-                    for($i=0;$i<$arr;$i++){
-                        $index=$i+1;
-                        $stmt->bindParam($index, $arr[$i]);
-                    }
-              }else{
-                    for($i=0;$i<sizeof($arr);$i++){
-                        $index=$i+1;
-                        $stmt->bindParam($index, $arr[$i]);
-                    }
-                }
+            // $stmt->bindParam(':conditionValue', $conditionValue);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -66,22 +54,11 @@
         }
     }
     
-    function setRow($query,$arr=null) {
+    function setRow($query) {
         $pdo = connectToDatabase();
         try {
-            $data = $stmt = $pdo->prepare($query);
-            if($arr==null){
-                    for($i=0;$i<$arr;$i++){
-                        $index=$i+1;
-                        $stmt->bindParam($index, $arr[$i]);
-                    }
-              }else{
-                    for($i=0;$i<sizeof($arr);$i++){
-                        $index=$i+1;
-                        $stmt->bindParam($index, $arr[$i]);
-                    }
-                }
-            $stmt->execute();
+            $stmt = $pdo->prepare($query);
+            $stmt->execute(@$data);
             $affectedRows = $stmt->rowCount();
             if ($affectedRows > 0) {
                 // If the update was successful, return the user ID
@@ -97,7 +74,5 @@
             die("Error executing query: " . $e->getMessage());
     }
 }
-
-   
 
 ?>

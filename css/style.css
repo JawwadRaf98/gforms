@@ -346,29 +346,30 @@ body::-webkit-scrollbar-thumb:hover {
 /* Add Form */
 
 .add-form {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 90%;
     margin: 0 auto;
-    padding: 2rem;
+    /* padding: 2rem; */
 }
 
 .section {
     padding: 1rem;
     border: 1px solid #dfdddd;
     background: #fff;
-    border-top: 10px solid #c91fc9;
+    border-top: 5px solid #c91fc9;
     border-radius: 10px 10px 5px 5px;
 }
 
-.section-title input {
+.section-title input ,.section-title input:focus,.section-title input:focus-within{
     width: 98%;
     margin-bottom: 1rem;
-    padding-left: 10px;
-    font-size: 35px;
+    /* padding-left: 10px; */
+    font-size: 24px;
     color: #7a7171;
     border: none;
     border-bottom: 1px dotted;
 }
+.section-title input:{}
 
 
 /* .section-title input:focus, .section-title input:focus-visible, .section-title input:active {
@@ -381,6 +382,7 @@ body::-webkit-scrollbar-thumb:hover {
     border: none;
     border-radius: 0px;
     border-bottom: 1px dotted;
+    padding: 0px;
 }
 .Question{
     margin-bottom: 1rem;
@@ -391,7 +393,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 #questioniar .section {
     border: none;
-    border-left: 10px solid #6fb3eb;
+    border-left: 5px solid #6fb3eb;
     border-radius: 10px 5px 5px 10px;
 }
 

@@ -1,5 +1,43 @@
 <?php
 include_once 'header.php'; ?>
+
+
+<?php
+$msg="";
+if (
+    isset($_SESSION['addFormToken']) &&
+    @$_SESSION['addFormToken'] == @$_POST['token']
+) {
+        // echo "<pre>";
+        // var_dump($_SESSION);
+        // echo "</pre>";
+
+        $user =  ( isset($_SESSION['webuser']['id']) && !empty($_SESSION['webuser']['id']) ) ? $_SESSION['webuser']['id'] : "";
+
+
+        if(!empty($user)){
+            $form_title =  ( isset($_POST['form-title']) && !empty($_POST['form-title']) ) ? $_POST['form-title'] : "";
+            $form_desc =  ( isset($_POST['desc']) && !empty($_POST['desc']) ) ? $_POST['desc'] : "";
+            $questions = $_POST['question'] ;
+            foreach($questions as $key=>$val){
+                $title  = !empty($val['question']) ? $val['question'] : "";
+                $type   = !empty($val['type']) ? $val['type'] : "";
+                $option  = !empty($val['options']) ? $val['options'] : array();
+                $option =  implode(',' , $option);
+            }
+        }else{
+            $msg = '<div class="custom-alert danger" role="alert">Something\'s went wrong</div>';
+        }
+
+        
+
+        
+    }
+
+?>
+
+
+
 <style>
     body{
         background-color: #d5d3d578;
@@ -7,8 +45,20 @@ include_once 'header.php'; ?>
 </style>
 
 <div class="container">
+    
+
     <div class="add-form">
+    <?php
+        if(!empty($msg)){
+                echo $msg ;
+            }
+    ?>
         <form action="" method="POST">
+            <?php
+            $token = rand();
+            $_SESSION['addFormToken'] = $token;
+            echo '<input type="hidden" name="token" value="' . $token . '" />';
+            ?>
 
             <div class="section section-title">
                 <div class="input">
@@ -41,13 +91,13 @@ include_once 'header.php'; ?>
                             <div class="center">
                                 <div class="input">
                                 <input type="hidden" class="question_no" value="<?php echo $i; ?>">
-                                    <input type="hidden" name="question[<?php echo $i; ?>]['type']" value="1" class = "question_type">
+                                    <input type="hidden" name="question[<?php echo $i; ?>][type]" value="1" class = "question_type">
 
                                     <div class="question_input_type">
-                                        <input type="text" name="question[<?php echo $i; ?>]" value="Write Your Question...." class="form-input" required/>
+                                        <input type="text" name="question[<?php echo $i; ?>][question]" value="Write Your Question...." class="form-input" required/>
                                     </div>
                                     <div class="options">
-                                       <input type="hidden" value="" name="question[<?php echo $i; ?>]['options']" class="option_text" />
+                                       <input type="hidden" value="" name="question[<?php echo $i; ?>][options][]" class="option_text" />
                                     </div>
 
                                 </div>
@@ -56,11 +106,13 @@ include_once 'header.php'; ?>
                     </div>
 
                 <?php
-                    }
+                   }
                 ?>
                 
 
-
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+            </div>
                 <!-- question end -->
 
             </div>
@@ -107,8 +159,8 @@ include_once 'header.php'; ?>
                 const selectedValue = $(this).val();
                 let question_no = $(this).closest(".Question").find('.question_no').val()
                 $(this).closest(".Question").find('.question_type').val(selectedValue)
-                let optionVal = `<input type="hidden" value="" name="question[${question_no}]['options']" />`;
-                let inputChange =  `<input type="text" name="question[${question_no}]" value="Write Your Question...." class="form-input" required/>`
+                let optionVal = `<input type="hidden" value="" name="question[${question_no}][options][]" />`;
+                let inputChange =  `<input type="text" name="question[${question_no}][question]" value="Write Your Question...." class="form-input" required/>`
                 
                 console.log(selectedValue)
                 if(selectedValue == "2" || selectedValue == "3"){
@@ -116,20 +168,20 @@ include_once 'header.php'; ?>
                     console.log(question_no);
                     optionVal = `<div class="options_input">
                                         <label>
-                                            <input type="text" value="Option  text" name="question[${question_no}]['options']" class="option_text" />
+                                            <input type="text" value="Option  text" name="question[${question_no}][options][]" class="option_text" />
                                         <label>
                                     </div>  
                                     
                                     <div class="options_input">
                                         <label>
-                                            <input type="text" value="Option  text" name="question[${question_no}]['options']" class="option_text" />
+                                            <input type="text" value="Option  text" name="question[${question_no}][options][]" class="option_text" />
                                             <i class="fa-solid fa-xmark" ></i>
                                         <label>
                                     </div>  
 
                                     <div class="options_input">
                                         <label>
-                                            <input type="text" value="Option text" name="question[${question_no}]['options']" class="option_text" />
+                                            <input type="text" value="Option text" name="question[${question_no}][options][]" class="option_text" />
                                         <label>
                                         <i class="fa-solid fa-xmark"></i>
                                     </div>
@@ -138,7 +190,7 @@ include_once 'header.php'; ?>
                                         <span class="add_more_btn">Add  more</span>
                                     <div>`;  
                         }else if( selectedValue == "4"){
-                            inputChange  = ` Write Your Question....<br><textarea ame="question[${question_no}]" class="form-input"  required>
+                            inputChange  = ` Write Your Question....<br><textarea ame="question[${question_no}][question]" class="form-input"  required>
                                        
                                     </textarea>`
                          
