@@ -1,14 +1,23 @@
-body{
+body {
     /* border: 1px solid; */
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
 }
 
+
 /*body {*/
+
+
 /*    margin: 0;*/
+
+
 /*    font-family: Arial, sans-serif;*/
+
+
 /*    background-color: #f5f5f5;*/
+
+
 /*}*/
 
 navbar {
@@ -50,182 +59,213 @@ navbar {
 .nav-links a:hover {
     background-color: #555;
 }
+
 .container {
     width: 90%;
-    margin: 1rem auto; 
+    margin: 1rem auto;
+}
+
+form {
+    width: 100%;
+    /*margin: 0 auto;*/
+}
+
+.formfield {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-input {
+    margin: 0.5rem 0;
+    width: 96%;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
 }
 
 
- form {
-      width: 100%;
-        /*margin: 0 auto;*/
-    }
+/* Basic table styles */
 
-    .formfield {
-        margin-bottom: 20px;
-    }
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
 
-    .form-label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
 
-    .form-input {
-        width: 96%;
-        padding:5px 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+.table th {
+    background-color: #f2f2f2;
+}
 
-    textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
 
-    input[type="submit"] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+/* Styling for links in the table */
 
-    input[type="submit"]:hover {
-        background-color: #45a049;
-    }
-    
-    /* Basic table styles */
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        font-size: 14px;
-    }
+.table a {
+    text-decoration: none;
+    color: #007bff;
+}
 
-    .table th,
-    .table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
+.table a:hover {
+    text-decoration: underline;
+}
 
-    .table th {
-        background-color: #f2f2f2;
-    }
 
-    /* Styling for links in the table */
-    .table a {
-        text-decoration: none;
-        color: #007bff;
-    }
+/* Styling for the "Send Mails" and "DEL" buttons */
 
-    .table a:hover {
-        text-decoration: underline;
-    }
+.container a,
+.table td a {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+}
 
-    /* Styling for the "Send Mails" and "DEL" buttons */
-    .container  a , .table td a {
-        display: inline-block;
-        margin-right: 10px;
-        padding: 5px 10px;
-        background-color: #007bff;
-        color: #fff;
-        border-radius: 5px;
-    }
 
-    /* Styling for the "Send Mails" and "DEL" buttons on hover */
-    .container  a , .table td a:hover {
-        background-color: #0056b3;
-    }
-    
-    
- .message-success {
-       
-        background-color: #dff0d8;
-        border: 1px solid #3c763d;
-        color: #3c763d;
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
-    
-    .message{ 
-        border:1px solid #a7a2a2;
-        padding: 5px;
-        max-height: 350px;
-        border-radius: 5px;
-        overflow-y: scroll;
-    }
+/* Styling for the "Send Mails" and "DEL" buttons on hover */
 
-    body {
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* Internet Explorer and Edge */
-    }
+.container a,
+.table td a:hover {
+    background-color: #0056b3;
+}
 
-    /* Apply styles to the custom scrollbar */
-    body::-webkit-scrollbar {
-        width: 10px; /* Width of the scrollbar */
-    }
+.message-success {
+    background-color: #dff0d8;
+    border: 1px solid #3c763d;
+    color: #3c763d;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
 
-    body::-webkit-scrollbar-track {
-        background-color: #f1f1f1; /* Track color (the area behind the thumb) */
-    }
+.message {
+    border: 1px solid #a7a2a2;
+    padding: 5px;
+    max-height: 350px;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
 
-    body::-webkit-scrollbar-thumb {
-        background-color: #888; /* Thumb color (the draggable part) */
-        border-radius: 5px; /* Rounded corners for the thumb */
-    }
+body {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer and Edge */
+}
 
-    /* Optional: Style the scrollbar on hover */
-    body::-webkit-scrollbar-thumb:hover {
-        background-color: #555;
-    }
-    
-    
-    
-    
-    /**/
-    .message {
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* Internet Explorer and Edge */
-    }
 
-    /* Apply styles to the custom scrollbar */
-    .message::-webkit-scrollbar {
-        width: 10px; /* Width of the scrollbar */
-    }
+/* Apply styles to the custom scrollbar */
 
-    .message::-webkit-scrollbar-track {
-        background-color: #f1f1f1; /* Track color (the area behind the thumb) */
-    }
+body::-webkit-scrollbar {
+    width: 10px;
+    /* Width of the scrollbar */
+}
 
-    .message::-webkit-scrollbar-thumb {
-        background-color: #888; /* Thumb color (the draggable part) */
-        border-radius: 5px; /* Rounded corners for the thumb */
-    }
+body::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    /* Track color (the area behind the thumb) */
+}
 
-    /* Optional: Style the scrollbar on hover */
-    .message::-webkit-scrollbar-thumb:hover {
-        background-color: #555;
-    }
-    
-.row{
+body::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Thumb color (the draggable part) */
+    border-radius: 5px;
+    /* Rounded corners for the thumb */
+}
+
+
+/* Optional: Style the scrollbar on hover */
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+
+/**/
+
+.message {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer and Edge */
+}
+
+
+/* Apply styles to the custom scrollbar */
+
+.message::-webkit-scrollbar {
+    width: 10px;
+    /* Width of the scrollbar */
+}
+
+.message::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    /* Track color (the area behind the thumb) */
+}
+
+.message::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Thumb color (the draggable part) */
+    border-radius: 5px;
+    /* Rounded corners for the thumb */
+}
+
+
+/* Optional: Style the scrollbar on hover */
+
+.message::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.row {
     width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 1rem;
 }
-.row .left, .row .right{
+
+.row .left,
+.row .right {
     width: 50%;
 }
 
 
 /* Login Form */
-.login-container a{
+
+.login-container a {
     text-decoration: none;
     color: #4a4747;
     font-weight: 600;
@@ -239,33 +279,32 @@ navbar {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.897);
     border-radius: 5px;
     margin-top: 100px;
-  }
+}
 
-  .login-container h2 {
+.login-container h2 {
     text-align: center;
     margin-bottom: 20px;
-  }
+}
 
-  .form-group {
+.form-group {
     margin-bottom: 20px;
-  }
+}
 
-  .form-group label {
+.form-group label {
     display: block;
     font-weight: bold;
-  }
+}
 
-  .form-group input[type="text"],
-  .form-group input[type="password"],
-  .form-group input[type="email"]
-   {
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
-  }
+}
 
-  .form-group button {
+.form-group button {
     width: 100%;
     padding: 10px;
     background-color: #4CAF50;
@@ -274,48 +313,54 @@ navbar {
     border-radius: 3px;
     cursor: pointer;
     font-size: 16px;
-  }
+}
 
-  .form-group button:hover {
+.form-group button:hover {
     background-color: #45a049;
-  }
+}
 
-  /* alert */
-  .custom-alert{
+
+/* alert */
+
+.custom-alert {
     /* border: 1px solid; */
     padding: 5px;
     margin-bottom: 10px;
-    font-size:  20px;
+    font-size: 20px;
     border-radius: 3px;
-  }
+}
 
-  .custom-alert.danger{
+.custom-alert.danger {
     border: 1px solid rgb(195 27 27 / 87%);
     background: rgb(255 72 72 / 87%);
     color: #fff;
-  }
-  .custom-alert.success{
-    border: 1px solid   #4CAF50;
-    background:  #3ea041ec;
+}
+
+.custom-alert.success {
+    border: 1px solid #4CAF50;
+    background: #3ea041ec;
     color: #fff;
-  }
+}
 
-  /* Add Form */
 
-.add-form{
+/* Add Form */
+
+.add-form {
     border: 1px solid black;
     width: 90%;
     margin: 0 auto;
-    padding: 2rem;    
+    padding: 2rem;
 }
-.section{
+
+.section {
     padding: 1rem;
     border: 1px solid #dfdddd;
     background: #fff;
     border-top: 10px solid #c91fc9;
     border-radius: 10px 10px 5px 5px;
 }
-.section-title input{
+
+.section-title input {
     width: 98%;
     margin-bottom: 1rem;
     padding-left: 10px;
@@ -324,41 +369,128 @@ navbar {
     border: none;
     border-bottom: 1px dotted;
 }
+
+
 /* .section-title input:focus, .section-title input:focus-visible, .section-title input:active {
     border: none;
     border-bottom: 1px dotted;
 } */
 
-.section-title textarea{
+.section-title textarea {
     width: 98%;
     border: none;
     border-radius: 0px;
     border-bottom: 1px dotted;
 }
-
-#questioniar{
+.Question{
+    margin-bottom: 1rem;
+}
+#questioniar {
     margin: 1rem 0;
 }
 
-#questioniar .section{
+#questioniar .section {
     border: none;
     border-left: 10px solid #6fb3eb;
     border-radius: 10px 5px 5px 10px;
 }
 
-.section .top{
+.section .top {
     /* border: 1px solid; */
     display: flex;
     justify-content: space-between;
     padding: 0 1rem;
 }
-.section .top .left{
+
+.section .top .left {
     font-weight: 600;
 }
-.section .top .right select{
-        /* background-color: #f2f2f2; */
-        /* color: #333; */
-        font-size: 16px;
-        /* border: 1px solid #ccc; */
-        padding: 5px;
+
+.section .top .right select {
+    /* background-color: #f2f2f2; */
+    /* color: #333; */
+    font-size: 16px;
+    /* border: 1px solid #ccc; */
+    padding: 5px;
+}
+
+
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style for each option input container */
+.options_input {
+    /* display: flex; */
+    /* align-items: center; */
+    margin-bottom: 10px;
+}
+
+/* Style for the radio button */
+.option_text_value {
+    margin-right: 10px;
+}
+
+/* Style for the text input */
+.option_text {
+    width: 90%;
+    border: none;
+    padding: 5px;
+    border-bottom: 1px solid #ccc !important;
+    border-radius: 0px;
+    /* border: none; */
+    margin: 0.2rem 1rem;
+}
+
+.option_text:last-child{
+    border: none;
+}
+
+i.fa-solid.fa-xmark {
+    cursor: pointer;
+    margin: 0 1rem;
+}
+
+.add_more_btn {
+    display: inline-block;
+    margin-left: 1rem;
+    padding: 5px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.add_more_btn:hover {
+    background-color: #45a049;
+}
+
+.type {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 200px;
+}
+
+/* Style the option elements */
+.type option {
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+}
+
+/* Style the select dropdown when it's focused */
+.type:focus {
+    outline: none;
+    border-color: #5b9dd9;
+}
+
+/* Style the select dropdown when it's hovered */
+.type:hover {
+    border-color: #999;
 }

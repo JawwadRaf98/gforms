@@ -11,8 +11,7 @@
         // login Fucntionality;
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $password = base64_encode($password);
-        $password = md5($password);
+        echo $password = base64_encode($password);
         $sql = "SELECT * FROM `user` WHERE `email` = '$email' AND `password` = '$password'";
         $data = getRow($sql); 
         if($data !== false){
