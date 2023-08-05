@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    $web_url = "https://imhostings.com/e/v";
+    $web_url = "http://localhost/gforms";
    
     define('WEB_URL',$web_url);
     

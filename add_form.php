@@ -1,8 +1,7 @@
 <?php
-include_once 'header.php'; ?>
+include_once 'header.php'; 
 
 
-<?php
 $msg="";
 if (
     isset($_SESSION['addFormToken']) &&
@@ -14,19 +13,42 @@ if (
 
         $user =  ( isset($_SESSION['webuser']['id']) && !empty($_SESSION['webuser']['id']) ) ? $_SESSION['webuser']['id'] : "";
 
+        $sql_form_limit = "SELECT COUNT(f_id) AS 'Rows' FROM `forms` WHERE created_by = ?";
+        $data = getRow($sql_form_limit , array($user));
+        $no_of_form = $data['Rows'];
+        if($no_of_form < 2){
+            if(!empty($user)){
+                $form_title =  ( isset($_POST['form-title']) && !empty($_POST['form-title']) ) ? $_POST['form-title'] : "";
+                $form_desc =  ( isset($_POST['desc']) && !empty($_POST['desc']) ) ? $_POST['desc'] : "";
+                $questions = $_POST['question'] ;
+                $st_date = '';
+                $end_date = '';
 
-        if(!empty($user)){
-            $form_title =  ( isset($_POST['form-title']) && !empty($_POST['form-title']) ) ? $_POST['form-title'] : "";
-            $form_desc =  ( isset($_POST['desc']) && !empty($_POST['desc']) ) ? $_POST['desc'] : "";
-            $questions = $_POST['question'] ;
-            foreach($questions as $key=>$val){
-                $title  = !empty($val['question']) ? $val['question'] : "";
-                $type   = !empty($val['type']) ? $val['type'] : "";
-                $option  = !empty($val['options']) ? $val['options'] : array();
-                $option =  implode(',' , $option);
+                $sql_form_insert = "INSERT INTO `forms`(`f_title`, `f_desc`, `f_st_time`, `f_end_time`, `created_by`) VALUES (?, ?, ?, ?, ?)";
+                $f_id = setRow($sql_form_insert, array($form_title, $form_desc, $st_date, $end_date, $user));    
+
+                if($f_id > 0){
+                    foreach($questions as $key=>$val){
+                        $title  = !empty($val['question']) ? $val['question'] : "";
+                        $type   = !empty($val['type']) ? $val['type'] : "";
+                        $option  = !empty($val['options']) ? $val['options'] : array();
+                        $option =  implode(',' , $option);
+
+                        $sql_question_insert = "INSERT INTO `questions`(`f_id`, `q_title`, `q_type`, `q_options`, `created_by`) VALUES (?, ?, ?, ?, ?)";
+                        setRow($sql_question_insert, array($f_id, $title, $type, $option, $user));
+                    }
+                    $msg = '<div class="custom-alert success" role="alert">Form added successfully</div>';
+                }else{
+                    $msg = '<div class="custom-alert danger" role="alert">Something\'s went wrong</div>';
+                }
+
+
+            
+            }else{
+                $msg = '<div class="custom-alert danger" role="alert">Something\'s went wrong</div>';
             }
         }else{
-            $msg = '<div class="custom-alert danger" role="alert">Something\'s went wrong</div>';
+            $msg = '<div class="custom-alert danger" role="alert">Your form limit is exceess delete previous form first.</div>';
         }
 
         

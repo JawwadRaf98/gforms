@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    $web_url = "https://imhostings.com/e/v";
+    $web_url = "http://localhost/gforms";
 //     ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
@@ -12,9 +12,9 @@
         try {
             
             $host = "localhost";
-            $dbname = "imhost5_emailSoftDBms";
-            $username = "imhost5_useremailSoft";
-            $password = "aOblH@eTw(o)";
+            $dbname = "gforms";
+            $username = "root";
+            $password = "";
 
             $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -26,18 +26,24 @@
     
     // $pdo_ = connectToDatabase($host, $dbname, $username, $password);
 
-    function getRow($query) {
+    function getRow($query, $arr=null) {
         try {
             $pdo = connectToDatabase();
             $stmt = $pdo->prepare($query);
-            // $stmt->bindParam(':conditionValue', $conditionValue);
+            if($arr==null){
+                for($i=0;$i<$arr;$i++){
+                    $index=$i+1;
+                    $stmt->bindParam($index, $arr[$i]);
+                }
+            }else{
+                for($i=0;$i<sizeof($arr);$i++){
+                    $index=$i+1;
+                    $stmt->bindParam($index, $arr[$i]);
+                }
+            }
             $stmt->execute();
             $response = $stmt->fetch(PDO::FETCH_ASSOC);
-            // if(!empty($response)){
-            //     $response =  $response[0];
-            // }else{
-            //     $response = array();
-            // }
+           
             return $response;
         } catch (PDOException $e) {
             die("Error executing query: " . $e->getMessage());
@@ -66,7 +72,7 @@
         }
     }
     
-    function setRow($query,$arr=null) {
+    function setRow($query,$arr=null,$insert=true) {
         $pdo = connectToDatabase();
         try {
             $data = $stmt = $pdo->prepare($query);
@@ -83,16 +89,17 @@
                 }
             $stmt->execute();
             $affectedRows = $stmt->rowCount();
-            if ($affectedRows > 0) {
-                // If the update was successful, return the user ID
-                return $affectedRows;
+            $lastInsertedId = $pdo->lastInsertId();
+            if($affectedRows > 0) {
+                if($insert){
+                    return $lastInsertedId;
+                }else{
+                    return $affectedRows;
+                }
             } else {
                 return 0;
             }
-            // Get the last inserted row ID
-            $lastInsertedId = $pdo->lastInsertId();
             
-            return $lastInsertedId;
         } catch (PDOException $e) {
             die("Error executing query: " . $e->getMessage());
     }
