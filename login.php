@@ -1,30 +1,36 @@
 <?php
-    include_once('./config.php');
+include_once './config.php';
 
-    $msg = "";
+$msg = '';
 
-    if(isset( $_SESSION["userLogin"]) &&  $_SESSION["userLogin"] == true){
+if (isset($_SESSION['userLogin']) && $_SESSION['userLogin'] == true) {
+    header('Location: index.php');
+}
+
+if (
+    isset($_SESSION['loginToken']) &&
+    @$_SESSION['loginToken'] == @$_POST['token']
+) {
+    // login Fucntionality;
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password = base64_encode($password);
+    $sql = "SELECT * FROM `user` WHERE `email` = '$email' AND `password` = '$password'";
+    $data = getRow($sql);
+    if ($data !== false) {
+        $webuser = [
+            'id' => $data['id'],
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'type' => $data['type'],
+        ];
+        $_SESSION['userLogin'] = true;
+        $_SESSION['webuser'] = $webuser;
         header('Location: index.php');
+    } else {
+        $msg = 'Invalid email or password';
     }
-
-    if(isset($_SESSION['loginToken']) && @$_SESSION['loginToken'] == @$_POST['token']){
-        // login Fucntionality;
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        echo $password = base64_encode($password);
-        $sql = "SELECT * FROM `user` WHERE `email` = '$email' AND `password` = '$password'";
-        $data = getRow($sql); 
-        if($data !== false){
-            $webuser = array('id'=>$data['id'], 'name'=>$data['name'], 'email'=>$data['email'], 'type'=>$data['type']);
-            $_SESSION["userLogin"] = true;
-            $_SESSION['webuser'] = $webuser;
-            header("Location: index.php");  
-        }else{
-            $msg = "Invalid email or password";
-        }
-    }
-
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,20 +46,21 @@
   <div class="login-container">
     <h2>Login Form</h2>
 
-    <?php 
-    if(!empty($msg)){
+    <?php if (!empty($msg)) {
         echo '
           <div class="custom-alert danger" role="alert">
-            '. $msg .'
+            ' .
+            $msg .
+            '
           </div>
         ';
-    }?>
+    } ?>
 
     <form method = "POST">
         <?php
-            $token = rand();
-            $_SESSION['loginToken']=$token;
-            echo '<input type="hidden" name="token" value="'.$token.'" />';
+        $token = rand();
+        $_SESSION['loginToken'] = $token;
+        echo '<input type="hidden" name="token" value="' . $token . '" />';
         ?>
       <div class="form-group">
         <label for="email">Email:</label>
